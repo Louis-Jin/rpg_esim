@@ -7,6 +7,9 @@
 #include <opencv2/core/eigen.hpp>
 #include <ze/common/timer_collection.hpp>
 
+#include <fstream>
+using namespace std;
+
 DECLARE_TIMER(TimerPlanarRenderer, timers_planar_renderer,
               compute_remap_maps,
               inverse_homography,
@@ -107,6 +110,14 @@ void PlanarRenderer::render(const Transformation& T_W_C, const ImagePtr& out_ima
       }
     }
   }
+
+//    ofstream myfile;
+//    myfile.open("/home/jin/x.csv");
+//    myfile<< cv::format(map_x_, cv::Formatter::FMT_CSV) << std::endl;
+//    myfile.close();
+//    myfile.open("/home/jin/y.csv");
+//    myfile<< cv::format(map_y_, cv::Formatter::FMT_CSV) << std::endl;
+//    myfile.close();
 
   int border = (extend_border_) ? cv::BORDER_REFLECT : cv::BORDER_CONSTANT;
   {
